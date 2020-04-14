@@ -11,7 +11,7 @@ import Browse from '../screens/Browse';
 import Product from '../screens/Product';
 import Settings from '../screens/Settings';
 
-// import { theme } from  '../constants';
+// import { theme } from '../constants';
 
 
 // const screens = createStackNavigator({
@@ -63,9 +63,9 @@ const ScreensStackScreen = () => {
     <NavigationContainer> 
       <ScreensStack.Navigator  screenOptions={{ gestureEnabled: false }}>
         <ScreensStack.Screen name="Welcome" component={Welcome} />
-        {/* <ScreensStack.Screen name="Login" component={Login} />
+        <ScreensStack.Screen name="Login" component={Login} />
         <ScreensStack.Screen name="SignUp" component={SignUp} />
-        <ScreensStack.Screen name="Forgot" component={Forgot} />
+        {/* <ScreensStack.Screen name="Forgot" component={Forgot} />
         <ScreensStack.Screen name="Explore" component={Explore} />
         <ScreensStack.Screen name="Browse" component={Browse} />
         <ScreensStack.Screen name="Product" component={Product} />

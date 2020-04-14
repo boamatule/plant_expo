@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Asset } from 'expo-asset';
 import { AppLoading } from 'expo';
 import Navigation from './navigation/index';
-
+import { Block } from './components';
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
@@ -27,7 +27,9 @@ export default class App extends React.Component {
         )
       }
       return (
-      <Navigation />
+        <Block white>
+           <Navigation />
+        </Block>
     );
   }
 }
