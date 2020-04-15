@@ -4,7 +4,7 @@ const categories = [
     name: 'Plants',
     tags: ['products', 'inspirations'],
     count: 147,
-    image: require('../assets/icons/plants_1.png')
+    image: require('../assets/images/plants_1.png')
   },
   // {
   //   id: 'seeds',
@@ -50,35 +50,35 @@ const products = [
     description: 'Bedrooms deserve to be decorated with lush greenery just like every other room in the house – but it can be tricky to find a plant that thrives here. Low light, high humidity and warm temperatures mean only certain houseplants will flourish.',
     tags: ['Interior', '27 m²', 'Ideas'],
     images: [
-      require('../assets/icons/plants_1.png'),
-      require('../assets/icons/plants_2.png'),
-      require('../assets/icons/plants_3.png'),
+      require('../assets/images/plants_1.png'),
+      require('../assets/images/plants_2.png'),
+      require('../assets/images/plants_3.png'),
       // showing only 3 images, show +6 for the rest
-      require('../assets/icons/plants_1.png'),
-      require('../assets/icons/plants_2.png'),
-      require('../assets/icons/plants_3.png'),
-      require('../assets/icons/plants_1.png'),
-      require('../assets/icons/plants_2.png'),
-      require('../assets/icons/plants_3.png'),
+      require('../assets/images/plants_1.png'),
+      require('../assets/images/plants_2.png'),
+      require('../assets/images/plants_3.png'),
+      require('../assets/images/plants_1.png'),
+      require('../assets/images/plants_2.png'),
+      require('../assets/images/plants_3.png'),
     ]
   }
 ];
 
 const explore = [
   // images
-  require('../assets/icons/explore_1.png'),
-  require('../assets/icons/explore_2.png'),
-  require('../assets/icons/explore_3.png'),
-  require('../assets/icons/explore_4.png'),
-  require('../assets/icons/explore_5.png'),
-  require('../assets/icons/explore_6.png'),
+  require('../assets/images/explore_1.png'),
+  require('../assets/images/explore_2.png'),
+  require('../assets/images/explore_3.png'),
+  require('../assets/images/explore_4.png'),
+  require('../assets/images/explore_5.png'),
+  require('../assets/images/explore_6.png'),
 ];
 
 const profile = {
   username: 'Boa',
   location: 'Oslo',
   email: 'kriss@kriss.com',
-  avatar: require('../assets/icons/avatar.png'),
+  avatar: require('../assets/images/avatar.png'),
   budget: 5000,
   monthly_cap: 7000,
   notifications: true,

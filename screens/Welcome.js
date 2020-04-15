@@ -1,22 +1,43 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, {Component }from 'react';
+import { StyleSheet, View, FlatList, Image, Dimensions  } from 'react-native';
 import { Button, Block, Text } from '../components';
 import { theme } from '../constants';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export default class Welcome extends React.Component {
+class Welcome extends Component {
    static navigationOptions = {
     header : null
   }
+  
+  state = {
 
-  renderIllustrations() {
-    return(
-      <Block>
-        <Text>Image</Text>
-      </Block>
-    )
   }
 
+    // const { width, height } = Dimensions.get('window'); 
+
+    renderIllustrations() {
+      const { illustrations } = this.props
+        return(
+          <FlatList
+            horizontal
+            pagingEnabled
+            scrollEnabled
+            showsHorizontalScrollIndicator={false}
+            scrollEventThrottle={16}
+            snapToAlignment="center"
+            data={illustrations}
+            extraDate={this.state}
+            keyExtractor={(item, index) => `${item.id}`}
+            renderItem={({ item }) => (
+              <Image
+                source={item.source}
+                resizeMode="contain"
+            />
+        )}
+      />
+    )
+  }
+  
   renderSteps() {
     return(
       <Block>
@@ -24,7 +45,7 @@ export default class Welcome extends React.Component {
       </Block>
     )
   }
-
+  
   render() {
     return (
       <Block>
@@ -38,6 +59,7 @@ export default class Welcome extends React.Component {
           </Text>
         </Block>
       
+
         <Block center middle>
           {this.renderIllustrations()}
           {this.renderSteps()}
@@ -59,11 +81,20 @@ export default class Welcome extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+Welcome.defaultProps = {
+  illustrations: [
+    { id: 1, source: require('../assets/images/illustration_1.png') },
+    { id: 2, source: require('../assets/images/illustration_2.png') },
+    { id: 3, source: require('../assets/images/illustration_3.png') },
+  ],
+};
+export default Welcome;
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
