@@ -12,11 +12,9 @@ class Welcome extends Component {
   state = {
 
   }
-
-    // const { width, height } = Dimensions.get('window'); 
-
     renderIllustrations() {
       const { illustrations } = this.props
+      const { width, height } = Dimensions.get('window');
         return(
           <FlatList
             horizontal
@@ -32,16 +30,28 @@ class Welcome extends Component {
               <Image
                 source={item.source}
                 resizeMode="contain"
+                style={{ width, height: height / 2, overflow: 'visible' }}
             />
         )}
       />
     )
   }
   
-  renderSteps() {
+  renderSteps(){
+    const { illustrations } = this.props
     return(
-      <Block>
-        <Text>* * *</Text>
+      <Block row center middle style={styles.stepsContainer}>
+        {illustrations.map((item, index) => {
+          return (
+            <Block
+              animated
+              flex={false}
+              key={`step-${index}`}
+              color="gray"
+              style={[styles.steps]}
+            />
+          )
+        })}
       </Block>
     )
   }
@@ -88,13 +98,20 @@ Welcome.defaultProps = {
     { id: 3, source: require('../assets/images/illustration_3.png') },
   ],
 };
+
 export default Welcome;
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+const styles = StyleSheet.create({
+  stepsContainer: {
+    position: 'absolute',
+    bottom: theme.sizes.base * 3,
+    right: 0,
+    left: 0,
+  },
+  steps: {
+    width: 5,
+    height: 5,
+    borderRadius: 5,
+    marginHorizontal: 2.5,
+  },
+});
