@@ -2,7 +2,6 @@ import React, {Component }from 'react';
 import { StyleSheet, View, FlatList, Image, Dimensions, Animated, Modal  } from 'react-native';
 import { Button, Block, Text } from '../components';
 import { theme } from '../constants';
-import { LinearGradient } from 'expo-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const { width, height } = Dimensions.get('window')
@@ -110,6 +109,11 @@ class Welcome extends React.Component {
                   10. You must not upload, post, host, or transmit unsolicited e-mail, SMSs, or "spam" messages.
                 </Text>
               </ScrollView>
+              <Block middle padding={[theme.sizes.base / 2, 0]}>
+                <Button gradient onPress={() => this.setState({ showTerms: false})}>
+                  <Text center>I understand</Text>
+                </Button>
+              </Block>
           </Block>
         </Modal>
       )
@@ -135,7 +139,7 @@ class Welcome extends React.Component {
           </Block>
           
           <Block middle flex={0.5} margin={[0, theme.sizes.padding * 2]}>
-            <Button onPress={() => this.props.navigation.navigate('Login')}>
+            <Button gradient onPress={() => this.props.navigation.navigate('Login')}>
               <Text center semibold white>Login</Text>
             </Button>
             <Button shadow onPress={() => this.props.navigation.navigate('SignUp')}>
