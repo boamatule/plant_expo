@@ -23,11 +23,11 @@ const ScreensStackScreen = () => {
         <ScreensStack.Screen name="Welcome" component={Welcome} />
         <ScreensStack.Screen name="Login" component={Login} />
         <ScreensStack.Screen name="SignUp" component={SignUp} />
-        {/* <ScreensStack.Screen name="Forgot" component={Forgot} />
-        <ScreensStack.Screen name="Explore" component={Explore} />
         <ScreensStack.Screen name="Browse" component={Browse} />
+        <ScreensStack.Screen name="Forgot" component={Forgot} />
+        <ScreensStack.Screen name="Explore" component={Explore} />
         <ScreensStack.Screen name="Product" component={Product} />
-        <ScreensStack.Screen name="Settings" component={Settings} /> */}
+        <ScreensStack.Screen name="Settings" component={Settings} />
       </ScreensStack.Navigator>
     </NavigationContainer>
   );

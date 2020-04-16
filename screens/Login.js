@@ -27,14 +27,39 @@ class Login extends React.Component {
 
 
   state = {
-    email: '',
-    password: '',
+    email: VALID_EMAIL = "kriss@kriss.com",
+    password: VALID_PASSWORD = "12345",
+    errors: [],
+    loading: false,
   }
 
   // const VALID_EMAIL = "kriss@kriss.com",
   // const VALID_PASSWORD = "12345",
 
-  render(){
+
+  handleLogin() {
+    const { navigation } = this.props;
+    const { email, password } = this.state;
+    const errors = [];
+
+    this.setState({ loading: true });
+    if (email !== VALID_EMAIL) {
+      errors.push('email');
+    }
+    if (password !== VALID_PASSWORD) {
+      errors.push('password');
+    }
+
+    this.setState({ errors, loading: false });
+    if (!errors.length) {
+      navigation.navigate("Browse");
+    }
+  }
+  render() {
+    const { navigation } = this.props;
+    const { loading, errors } = this.state;
+    const hasErrors = key => errors.includes(key) ? styles.hasErrors : null;
+
    return (
       <KeyboardAvoidingView style={styles.login} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
@@ -42,16 +67,18 @@ class Login extends React.Component {
           <Block middle>
             <Input 
               label="Email"
-              style = {styles.input}
+              errors={hasErrors('email')}
+              style = {[styles.input, hasErrors('email')]}
               defaultValue={this.state.email}
-              onChangeText={text => this.setState({email : text})}
+              onChangeText={text => this.setState({ email : text })}
             />
             <Input 
-              // secure
+              secure
               label="Password"
-              style = {styles.input}
+              errors={hasErrors('password')}
+              style = {[styles.input, hasErrors('password')]}
               defaultValue={this.state.password}
-              onChangeText={text => this.setState({password : text})}
+              onChangeText={text => this.setState({ password : text })}
             />
             <Button gradient onPress={() => this.handleLogin()}>
               <Text bold white center>Login</Text>
@@ -81,6 +108,9 @@ const styles = StyleSheet.create({
   login: {
     flex: 1,
     justifyContent: 'center',
+  },
+  hasErrors: {
+    borderBottomColor: theme.colors.accent,
   },
 
 });
