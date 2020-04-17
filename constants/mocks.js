@@ -1,3 +1,4 @@
+import { theme } from '../constants';
 const categories = [
   {
     id: 'plants',
@@ -83,6 +84,7 @@ const profile = {
   monthly_cap: 7000,
   notifications: true,
   newsletter: false,
+  // backgroundColor: theme.colors.grey,
 };
 
 export {
