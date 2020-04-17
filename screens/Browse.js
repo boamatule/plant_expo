@@ -35,7 +35,7 @@ class Browse extends React.Component {
       <Block> 
         <Block flex={false} row center space="between" style={styles.header}>    
           <Text h1 bold>Browse</Text>
-          <Button>
+          <Button onPress={() => navigation.navigate('Settings')}>
             <Image source={profile.avatar} style={styles.avatar} />
           </Button>
         </Block>

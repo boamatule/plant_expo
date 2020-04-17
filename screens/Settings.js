@@ -1,15 +1,22 @@
 import React from 'react';
-import { Block, Text} from '../components';
+import { StyleSheet, Image } from 'react-native';
+import { theme, mocks } from '../constants';
 
-class Settings extends React.Component {
-  render() {
+import { Button, Block, Text} from '../components';
+export default class Browse extends React.Component {
+  render(){
     return (
-      <Block middle>>
-        <Text>Browse</Text>
+      <Block>
+        <Text>Settings</Text>
       </Block>
-    )
-  }
+    );
+  }   
+
+}
+Browse.defaultProps = {
+    profile : mocks.profile,
 }
 
+const styles = StyleSheet.create({
 
-export default Settings
+});
