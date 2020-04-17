@@ -77,7 +77,7 @@ const explore = [
 const profile = {
   username: 'Boa',
   location: 'Oslo',
-  email: 'kriss@kriss.com',
+  email: 'boa@boa.com',
   avatar: require('../assets/images/avatar.png'),
   budget: 5000,
   monthly_cap: 7000,
