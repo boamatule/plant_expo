@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Image, ScrollView } from 'react-native';
 import { theme, mocks } from '../constants';
 
-import { Button, Block, Text} from '../components';
+import { Button, Block, Text, Divider } from '../components';
 export default class Browse extends React.Component {
   render(){
     const { profile } = this.props;
@@ -44,8 +44,20 @@ export default class Browse extends React.Component {
                 </Text>
               </Block>
           </Block>
+          <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
+            <Block style={styles.sliders}>
+                <Block>
+                    <Text gray2>Budget</Text>
+                    <Text caption gray2 right>$1,000</Text>
+                </Block>
+                <Block>
+                    <Text gray2>Monthly Cap</Text>
+                    <Text caption gray2 right>$5,000</Text>
+                </Block>
+            </Block>
+            <Divider />
         </ScrollView>
-     </Block>
+   </Block>
   );
 }  
 
@@ -69,5 +81,8 @@ const styles = StyleSheet.create({
   inputRow: {
     alignItems: 'flex-end'
   },
-
+  sliders: {
+    marginTop: theme.sizes.base * 0.7,
+    paddingHorizontal: theme.sizes.base * 2,
+  },
 });
