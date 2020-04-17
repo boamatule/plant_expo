@@ -19,15 +19,98 @@ const ScreensStack = createStackNavigator();
 const ScreensStackScreen = () => { 
   return (
     <NavigationContainer> 
-      <ScreensStack.Navigator>
-        <ScreensStack.Screen name="Welcome" component={Welcome} />
-        <ScreensStack.Screen name="Login" component={Login} />
-        <ScreensStack.Screen name="SignUp" component={SignUp} />
-        <ScreensStack.Screen name="Browse" component={Browse} />
-        <ScreensStack.Screen name="Forgot" component={Forgot} />
-        <ScreensStack.Screen name="Explore" component={Explore} />
-        <ScreensStack.Screen name="Product" component={Product} />
-        <ScreensStack.Screen name="Settings" component={Settings} />
+      <ScreensStack.Navigator defaultNavigationOptions={{
+        // headerStyle: <Image source={require('../assets/icons/back.png')} />
+    
+      }}>
+        <ScreensStack.Screen 
+          name="Welcome" 
+          component={Welcome}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: ''
+            },
+            headerTintColor: ''
+          }}
+        />
+        <ScreensStack.Screen 
+          name="Login" 
+          component={Login}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: ''
+            },
+            headerTintColor: ''
+          }}
+        />
+        <ScreensStack.Screen
+          name="SignUp" 
+          component={SignUp}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: ''
+            },
+            headerTintColor: ''
+          }} 
+        />
+        <ScreensStack.Screen
+          name="Browse"
+          component={Browse}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: ''
+            },
+            headerTintColor: ''
+          }}
+        />
+        <ScreensStack.Screen
+          name="Forgot" 
+          component={Forgot}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: ''
+            },
+            headerTintColor: ''
+          }} 
+        />
+        <ScreensStack.Screen
+          name="Explore"
+          component={Explore}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: ''
+            },
+            headerTintColor: ''
+          }}
+        />
+        <ScreensStack.Screen
+          name="Product"
+          component={Product}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: ''
+            },
+            headerTintColor: ''
+          }} 
+        />
+        <ScreensStack.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            title: '',
+            headerStyle: {
+              backgroundColor: ''
+            },
+            headerTintColor: ''
+          }} 
+        />
       </ScreensStack.Navigator>
     </NavigationContainer>
   );
@@ -48,6 +131,7 @@ const ScreensStackScreen = () => {
 //        headerLeftContainerStyle: {},
 // headerRightContainerStyle: {},
 
+// navigationOptions={props => <Image {...props}/>}
 
 
 export default ScreensStackScreen 

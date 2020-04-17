@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
     height: theme.sizes.base * 2,
     top: theme.sizes.base,
     right: 0,
+    backgroundColor: theme.colors.grey,
   }
 });
 
