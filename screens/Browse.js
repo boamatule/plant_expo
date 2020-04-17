@@ -19,6 +19,7 @@ class Browse extends React.Component {
         styles.tab,
         isActive ? styles.active : null
         ]}
+        onPress={() => this.setState({ active: tab})}
         >
         <Text size={16} medium gray={!isActive} secondary={isActive}>
         {tab}
