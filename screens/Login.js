@@ -66,7 +66,6 @@ class Login extends React.Component {
     const { loading, errors } = this.state;
     const hasErrors = key => errors.includes(key) ? styles.hasErrors : null;
 
-
    return (
       <KeyboardAvoidingView style={styles.login} behavior="padding">
         <Block padding={[0, theme.sizes.base * 2]}>
@@ -93,7 +92,6 @@ class Login extends React.Component {
              <ActivityIndicator size="small" color="white" /> :
                <Text bold white center>Login</Text>
               }
-
             </Button>
 
             <Button onPress={() => navigation.navigate('Forgot')}>
