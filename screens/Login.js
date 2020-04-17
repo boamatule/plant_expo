@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, Image, KeyboardAvoidingView, ActivityIndicator,  Keyboard } from 'react-native';
 import { Button, Block, Text, Input } from '../components';
 import { theme } from '../constants';
 
@@ -41,24 +41,31 @@ class Login extends React.Component {
     const { navigation } = this.props;
     const { email, password } = this.state;
     const errors = [];
+    Keyboard.dismiss();
 
     this.setState({ loading: true });
-    if (email !== VALID_EMAIL) {
-      errors.push('email');
-    }
-    if (password !== VALID_PASSWORD) {
-      errors.push('password');
-    }
 
-    this.setState({ errors, loading: false });
-    if (!errors.length) {
-      navigation.navigate("Browse");
-    }
+    setTimeout(() => { 
+
+      if (email !== VALID_EMAIL) {
+        errors.push('email');
+      }
+      if (password !== VALID_PASSWORD) {
+        errors.push('password');
+      }
+  
+      this.setState({ errors, loading: false });
+      if (!errors.length) {
+        navigation.navigate("Browse");
+      }
+    }, 2000);
   }
+
   render() {
     const { navigation } = this.props;
     const { loading, errors } = this.state;
     const hasErrors = key => errors.includes(key) ? styles.hasErrors : null;
+
 
    return (
       <KeyboardAvoidingView style={styles.login} behavior="padding">
@@ -81,10 +88,15 @@ class Login extends React.Component {
               onChangeText={text => this.setState({ password : text })}
             />
             <Button gradient onPress={() => this.handleLogin()}>
-              <Text bold white center>Login</Text>
+
+             {loading ?
+             <ActivityIndicator size="small" color="white" /> :
+               <Text bold white center>Login</Text>
+              }
+
             </Button>
 
-            <Button onPress={() => {}}>
+            <Button onPress={() => navigation.navigate('Forgot')}>
               <Text gray caption center style={{ textDecorationLine: 'underline' }}>
                 Forgot your password?
               </Text>
