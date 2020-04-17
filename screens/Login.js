@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, KeyboardAvoidingView, ActivityIndicator,  Keyboard } from 'react-native';
+import { StyleSheet, KeyboardAvoidingView, ActivityIndicator,  Keyboard } from 'react-native';
 import { Button, Block, Text, Input } from '../components';
 import { theme } from '../constants';
 
@@ -41,8 +41,8 @@ class Login extends React.Component {
     const { navigation } = this.props;
     const { email, password } = this.state;
     const errors = [];
-    Keyboard.dismiss();
 
+    Keyboard.dismiss();
     this.setState({ loading: true });
 
     setTimeout(() => { 
