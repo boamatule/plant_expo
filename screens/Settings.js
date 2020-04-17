@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, ScrollView } from 'react-native';
+import { StyleSheet, Image, ScrollView, Switch } from 'react-native';
 import { theme, mocks } from '../constants';
 import Slider from 'react-native-slider';
 
@@ -8,6 +8,8 @@ export default class Browse extends React.Component {
   state = {
     budget: 850,
     monthly: 1700,
+    notifications: true,
+    newsletter: false,
 }
 
   render(){
@@ -84,6 +86,23 @@ export default class Browse extends React.Component {
           </Block>
           </Block>
           <Divider />
+
+          <Block style={styles.toggles}>
+            <Block row center space="between" style={{ marginBottom: theme.sizes.base * 2 }}>
+              <Text gray2>Notifications</Text>
+              <Switch
+                value={this.state.notifications}
+                onValueChange={value => this.setState({ notifications: value })}
+              />
+            </Block>
+            <Block row center space="between">
+              <Text gray2>Newsletter</Text>
+              <Switch
+                value={this.state.newsletter}
+                onValueChange={value => this.setState({ newsletter: value })}
+              />
+            </Block>
+          </Block>
         </ScrollView>
    </Block>
   );
@@ -121,4 +140,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     backgroundColor: theme.colors.secondary,
   },
+  toggles: {
+    paddingHorizontal: theme.sizes.base * 2,
+  }
 });
