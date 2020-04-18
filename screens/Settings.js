@@ -1,19 +1,50 @@
 import React from 'react';
-import { StyleSheet, Image, ScrollView, Switch } from 'react-native';
+import { StyleSheet, Image, ScrollView, Switch, TextInput } from 'react-native';
 import { theme, mocks } from '../constants';
 import Slider from 'react-native-slider';
 
-import { Button, Block, Text, Divider } from '../components';
+import { Button, Block, Text, Divider, Input } from '../components';
 export default class Browse extends React.Component {
   state = {
     budget: 850,
     monthly: 1700,
     notifications: true,
     newsletter: false,
+    editing: null,
+    profile: {},
+
+}
+
+componentDidMount() {
+  this.setState({ profile: this.props.profile });
+}
+
+toggleEdit(name) {
+  const { editing } = this.state;
+  this.setState({ editing: !editing ? name : null });
+}
+
+renderEdit(name) {
+  const { profile, editing } = this.state;
+  if (editing === name) {
+    return (
+      <TextInput
+        defaultValue={profile[name]}
+        onChangeText={text => this.handleEdit([name], text)}
+      />
+    )
+  }
+  return <Text bold>{profile[name]}</Text>
+}
+
+handleEdit(name, text) {
+  const { profile } = this.state;
+  profile[name] = text;
+  this.setState({ profile });
 }
 
   render(){
-    const { profile } = this.props;
+    const { profile, editing } = this.props;
     return (
       <Block>
          <Block flex={false} row center space="between" style={styles.header}>
@@ -23,35 +54,32 @@ export default class Browse extends React.Component {
           </Button> 
         </Block>
         <ScrollView showsVerticalScrollIndicator={false}>
-            <Block style={styles.inputs}>
-              <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
-                <Block>
-                  <Text gray2 style={{ marginBottom: 10 }}>Username</Text>
-                  <Text bold>{profile.username}</Text>
-                </Block>
-                <Text medium secondary>
-                  Edit
-                </Text>
-              </Block>
-              <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
-                <Block>
-                  <Text gray2 style={{ marginBottom: 10 }}>Location</Text>
-                  <Text bold>{profile.location}</Text>
-                </Block>
-                <Text medium secondary>
-                  Edit
-                </Text>
-              </Block>
-              <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
-                <Block>
-                  <Text gray2 style={{ marginBottom: 10 }}>E-mail</Text>
-                  <Text bold>{profile.email}</Text>
-                </Block>
-                <Text medium secondary>
-                  Edit
-                </Text>
-              </Block>
-          </Block>
+        <Block style={styles.inputs}>
+   <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
+     <Block>
+       <Text gray2 style={{ marginBottom: 10 }}>Username</Text>
+       {this.renderEdit('username')}
+     </Block>
+     <Text medium secondary onPress={() => this.toggleEdit('username')}>
+       {editing === 'username' ? 'Save' : 'Edit'}
+     </Text>
+   </Block>
+   <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
+     <Block>
+       <Text gray2 style={{ marginBottom: 10 }}>Location</Text>
+       {this.renderEdit('location')}
+     </Block>
+     <Text medium secondary onPress={() => this.toggleEdit('location')}>
+       {editing === 'location' ? 'Save' : 'Edit'}
+     </Text>
+   </Block>
+   <Block row space="between" margin={[10, 0]} style={styles.inputRow}>
+     <Block>
+       <Text gray2 style={{ marginBottom: 10 }}>E-mail</Text>
+       <Text bold>{profile.email}</Text>
+     </Block>
+   </Block>
+ </Block>
           <Divider margin={[theme.sizes.base, theme.sizes.base * 2]} />
             <Block style={styles.sliders}> 
               <Block>
