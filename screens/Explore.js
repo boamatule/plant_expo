@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity, Animated } from 'react-native';
 import { theme, mocks } from '../constants';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,23 +10,30 @@ import { Button, Block, Text, Input } from '../components';
 
 export default class Explore extends React.Component {
   state = { 
+    searchFocus: new Animated.Value(0.6),
     searchString: null,
+ 
   }
 
   renderSearch() {
-    const {searchString} = this.state
+    const { searchString, searchFocus } = this.state;
+    const isEditing = searchFocus && searchString;
       return(
-        <Block middle flex={0.6}>
+        <Block animated middle flex={searchFocus} style={styles.search}>
           <Input 
             placeholder="Search"
-            placeholderTextColor={theme.colors.gray}
+            placeholderTextColor={theme.colors.gray2}
             style={styles.searchInput}
+            onFocus={() => this.handleSearchFocus(true)}
+            onBlur={() => this.handleSearchFocus(false)}
             onChangeText={text => this.setState({searchString : text})}
             value={searchString}
+            onRightPress={() => isEditing ? this.setState({ searchString: null }) 
+            : null}
             rightStyle={styles.searchRight}
             rightLabel={
               <FontAwesome
-              name="search"
+              name={isEditing ? "close" : "search"}
               size={theme.sizes.base / 1.6}
               color={theme.colors.gray2}
               style={styles.searchIcon}
@@ -94,6 +101,16 @@ export default class Explore extends React.Component {
         />
       </TouchableOpacity>
     )
+  }
+
+  handleSearchFocus(status) {
+    Animated.timing(
+      this.state.searchFocus,
+      {
+        toValue: status ? 0.8 : 0.6, // status === true, increase flex size
+        duration: 150, // ms
+      }
+    ).start();
   }
   
 
