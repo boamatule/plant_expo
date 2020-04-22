@@ -25,6 +25,9 @@ class Login extends React.Component {
   //   },
   // };
 
+  static navigationOptions = {
+    headerShown: false
+  };
 
   state = {
     email: VALID_EMAIL = "kriss@kriss.com",

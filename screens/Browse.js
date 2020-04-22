@@ -43,7 +43,7 @@ handleTab = tab => {
   }
   
   render() {
-    const { profile, navigation } = this.props
+    const { profile, navigation, route } = this.props
     const { categories } = this.state;
     const tabs = ['Products', 'Inspirations', 'Shop']
     
@@ -67,6 +67,7 @@ handleTab = tab => {
               <TouchableOpacity
                 key={category.name}
                 onPress={() => navigation.navigate('Explore', { category })}
+                // onPress={() => route.params?.someParam ?? '{categories}'}
               >
                 <Card center middle shadow style={styles.category}>
                   <Badge margin={[0, 0, 15]} size={50} color="rgba(41,216,143,0.20)">
@@ -90,6 +91,7 @@ Browse.defaultProps = {
 }
 
 const { width } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   header: {
     paddingHorizontal: theme.sizes.base * 2,

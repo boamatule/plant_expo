@@ -18,20 +18,33 @@ const ScreensStack = createStackNavigator();
 
 const ScreensStackScreen = () => { 
   return (
-    <NavigationContainer> 
-      <ScreensStack.Navigator defaultNavigationOptions={{
-        // headerStyle: <Image source={require('../assets/icons/back.png')} />
-    
-      }}>
+    <NavigationContainer
+    // defaultNavigationOptions={{
+    //   headerBackButton: <Image />,
+    //   headerBackTitle: null, 
+    //   headerLeftContainerStyle: {},
+    //   headerRightContainerStyle: {},
+    // }}
+    > 
+      <ScreensStack.Navigator
+       initialRouteName="Home"
+      
+        //   defaultNavigationOptions={{
+        //   headerBackBotton: <Image source={require('../assets/icons/back.png')} />,
+        //   headerBackTitle: null, 
+        //   headerLeftContainerStyle: {},
+        //   headerRightContainerStyle: {},
+        // }}
+      >
         <ScreensStack.Screen 
           name="Welcome" 
           component={Welcome}
           options={{
             title: '',
             headerStyle: {
-              backgroundColor: ''
-            },
-            headerTintColor: ''
+              backgroundColor: '',
+
+            }
           }}
         />
         <ScreensStack.Screen 
@@ -40,9 +53,9 @@ const ScreensStackScreen = () => {
           options={{
             title: '',
             headerStyle: {
-              backgroundColor: ''
-            },
-            headerTintColor: ''
+              backgroundColor: '',
+              headerTitle:''
+            }
           }}
         />
         <ScreensStack.Screen
@@ -51,7 +64,7 @@ const ScreensStackScreen = () => {
           options={{
             title: '',
             headerStyle: {
-              backgroundColor: ''
+           
             },
             headerTintColor: ''
           }} 
