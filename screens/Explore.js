@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { theme, mocks } from '../constants';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 import { Button, Block, Text, Input } from '../components';
@@ -37,22 +37,65 @@ export default class Explore extends React.Component {
     )
   }
 
-  renderExplore() {
+  renderExplore(){
+    const { images, navigation } = this.props;
+    const mainImage = images[0];
+
     return (
-      <Block>
-        <Text>Explore Section</Text>
+      <Block style={{ marginBottom: height / 3 }}>
+        <TouchableOpacity
+          style={[ styles.image, styles.mainImage ]}
+          onPress={() => navigation.navigate('Product')}
+        >
+          <Image source={mainImage} style={[styles.image, styles.mainImage]} />
+        </TouchableOpacity>
+        <Block row space="between" wrap>
+        {
+          images.slice(1).map((img, index) => this.renderImage(img, index))
+        }
+        </Block>
       </Block>
     )
   }
+  
 
-    renderFooter() {
-      return(
-        <Block style={styles.footer}>
-          <Text>Footer section</Text>
-        </Block>
+  renderFooter() {
+    return (
+      <LinearGradient
+      locations={[0.5, 1]}
+      style={styles.footer}
+      colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.6)']}
+      >
+      <Button gradient style={{ width: width / 2.678 }}>
+        <Text bold white center>Filter</Text>
+      </Button>
+      </LinearGradient>
     )
   }
 
+  renderImage(img, index) {
+    const { navigation } = this.props;
+    const sizes = Image.resolveAssetSource(img);
+    const fullWidth = width - (theme.sizes.padding * 2.5);
+    const resize = (sizes.width * 100) / fullWidth;
+    const imgWidth = resize > 75 ? fullWidth : sizes.width * 1;
+
+    return (
+      <TouchableOpacity
+        key={`img-${index}`}
+        onPress={() => navigation.navigate('Product')}
+      >
+        <Image
+          source={img}
+          style={[
+            styles.image,
+            { minWidth: imgWidth, maxWidth: imgWidth }
+          ]}
+        />
+      </TouchableOpacity>
+    )
+  }
+  
 
   render() {
     return (
@@ -71,6 +114,10 @@ export default class Explore extends React.Component {
     );
   }  
 }
+
+Explore.defaultProps = {
+  images: mocks.explore,
+};
 
 const { width, height } = Dimensions.get('window');
 
@@ -111,5 +158,16 @@ const styles = StyleSheet.create({
     height: height * 0.1,
     width,
     paddingBottom: theme.sizes.base * 4,
-  }
+  },
+  image: {
+    minHeight: 100,
+    maxHeight: 130,
+    maxWidth: width - (theme.sizes.padding * 2.5),
+    marginBottom: theme.sizes.base,
+    borderRadius: 4,
+  },
+  mainImage: {
+    minWidth: width - (theme.sizes.padding * 2.5),
+    minHeight: width - (theme.sizes.padding * 2.5),
+  },
 })
