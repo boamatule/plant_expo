@@ -2,6 +2,7 @@ import React from 'react'
 import { Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Welcome from '../screens/Welcome';
 import Login from '../screens/Login';
 import SignUp from '../screens/SignUp';
@@ -14,9 +15,13 @@ import Settings from '../screens/Settings';
 import { theme } from '../constants';
 
 
+
+
+const Tabs = createBottomTabNavigator();
+
 const ScreensStack = createStackNavigator();
 
-const ScreensStackScreen = () => { 
+const ScreensStackScreen = ({ navigation }) => { 
   return (
     <NavigationContainer
     // defaultNavigationOptions={{
@@ -129,22 +134,18 @@ const ScreensStackScreen = () => {
   );
 }
 
+<NavigationContainer ref={containerRef} initialState={initialNavigationState}>
 
-// defaultNavigationOptions: {
-//   headerStyle: {},
-//   headerBackImage: <Image source={require('../assets/icons/back.png')} />,
-//   headerBackTitle: null,
-//   headerLeftContainerStyle: {},
-//   headerRightContainerStyle: {},
-// }
+<Tabs.Navigator>
+  <Tabs.Screen name="Intro" component={ AuthStackScreen } />   
+  <Tabs.Screen name="Login" component={ LoginScreen } />   
+  <Tabs.Screen name="Home" component={ HomeStackScreen } />
+  <Tabs.Screen name="SignUp" component={ EmailInputScreen  } />
+</Tabs.Navigator>
 
-// headerStyle: {},
-//     headerBackImage: <Image/>,
-//    headerBackTitle: null,
-//        headerLeftContainerStyle: {},
-// headerRightContainerStyle: {},
+</NavigationContainer>
 
-// navigationOptions={props => <Image {...props}/>}
+
 
 
 export default ScreensStackScreen 
